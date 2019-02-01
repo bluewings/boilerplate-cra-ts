@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies, global-require */
 const { getIn, setIn } = require('immutable');
 const tailwindcss = require('tailwindcss');
+const postcssFlexbugsFixes = require('postcss-flexbugs-fixes');
+const postcssPresetEnv = require('postcss-preset-env');
 
 const babelLoader = {
   loader: require.resolve('babel-loader'),
@@ -12,8 +14,8 @@ const babelLoader = {
 const pugAsJsxLoader = {
   loader: require.resolve('pug-as-jsx-loader'),
   options: {
-    resolveVariables: {
-      cx: 'classnames',
+    resolve: {
+      classnames: 'cx',
     },
     // transpiledFile: true,
     autoUpdateJsFile: true,
@@ -40,15 +42,12 @@ const postcssLoader = {
     ident: 'postcss',
     plugins: () => [
       tailwindcss(),
-      require('postcss-flexbugs-fixes'),
-      require('autoprefixer')({
-        browsers: [
-          '>1%',
-          'last 4 versions',
-          'Firefox ESR',
-          'not ie < 9', // React doesn't support IE8 anyway
-        ],
-        flexbox: 'no-2009',
+      postcssFlexbugsFixes,
+      postcssPresetEnv({
+        autoprefixer: {
+          flexbox: 'no-2009',
+        },
+        stage: 3,
       }),
     ],
   },
@@ -92,27 +91,25 @@ module.exports = paths => ({
 
       // Process application css|scss.
       {
-        test: /\.(css|scss)$/,
-        exclude: /\/(node_modules|styles)\//,
+        test: /\.module\.(css|scss)$/,
+        include: /(\/src\/|\/documentation\/)/,
         use: [
           styleLoader,
           cssLoader,
           postcssLoader,
           sassLoader,
-          // sassVarsLoader,
         ],
       },
 
       // Process any css|scss outside of the app.
       {
-        test: /\.(css|scss)$/,
-        include: /\/(node_modules|styles)\//,
+        test: filename => filename.match(/\.(css|scss)$/) && !filename.match(/\.module\.(css|scss)$/),
+        include: /(\/src\/|\/documentation\/|\/node_modules\/)/,
         use: [
           styleLoader,
           setIn(cssLoader, ['options', 'localIdentName'], '[local]'),
           postcssLoader,
           sassLoader,
-          // sassVarsLoader,
         ],
       },
 
