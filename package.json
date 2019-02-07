@@ -3,16 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/jest": "^23.3.13",
-    "@types/node": "^10.12.19",
-    "@types/react": "^16.7.22",
-    "@types/react-dom": "^16.0.11",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0"
+    "@types/jest": "^24.0.0",
+    "@types/node": "^10.12.21",
+    "@types/react": "^16.8.2",
+    "@types/react-dom": "^16.8.0",
+    "react": "^16.8.1",
+    "react-dom": "^16.8.1"
   },
   "devDependencies": {
     "babel-plugin-transform-commonjs-es2015-modules": "^4.0.1",
-    "cra-rewired": "^1.0.16",
+    "cra-rewired": "^1.0.20",
     "json-loader": "^0.5.7",
     "node-sass": "^4.11.0",
     "pug-as-jsx-loader": "^1.0.63",
