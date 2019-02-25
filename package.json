@@ -5,7 +5,11 @@
   "module": "dist/my-app.es.js",
   "browser": "dist/my-app.amd.js",
   "jsnext:main": "dist/my-app.es.js",
-  "private": true,
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluewings/boilerplate-cra-ts"
+  },
   "dependencies": {
     "@types/jest": "^24.0.6",
     "@types/node": "^11.9.5",
@@ -15,8 +19,12 @@
     "react-dom": "^16.8.3"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.3.1",
+    "@githubprimer/octicons-react": "^8.4.2",
     "babel-plugin-transform-commonjs-es2015-modules": "^4.0.1",
     "cra-rewired": "^1.0.22",
+    "docz": "^0.13.7",
+    "docz-theme-default": "^0.13.7",
     "json-loader": "^0.5.7",
     "node-sass": "^4.11.0",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -33,14 +41,19 @@
     "rollup-plugin-uglify": "^6.0.2",
     "tailwindcss": "^0.7.4",
     "typescript": "^3.3.3333",
+    "url-parse": "^1.4.4",
+    "webpack": "^4.28.4",
     "yaml-loader": "^0.5.0"
   },
   "scripts": {
     "start": "cra-rewired -s react-scripts -m start -c config/webpack.custom.dev.js",
     "build": "rollup -c",
     "prebuild": "rm -rf dist/*",
+    "prepare": "npm run build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docz": "docz dev",
+    "docz:build": "docz build"
   },
   "eslintConfig": {
     "extends": "react-app"
