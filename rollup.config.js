@@ -2,6 +2,7 @@ import pugAsJsx from 'rollup-plugin-pug-as-jsx';
 import typescript from 'rollup-plugin-typescript2';
 import babel from 'rollup-plugin-babel';
 import postcss from 'rollup-plugin-postcss';
+import { uglify } from 'rollup-plugin-uglify';
 import tailwindcss from 'tailwindcss';
 import postcssFlexbugsFixes from 'postcss-flexbugs-fixes';
 import postcssPresetEnv from 'postcss-preset-env';
@@ -14,20 +15,8 @@ const entry = 'src/core';
 
 const external = Object.keys(pkg.dependencies);
 
-export default {
+const rollupConfig = {
   input: `${entry}/index.ts`,
-  output: [
-    {
-      file: pkg.main,
-      format: 'cjs',
-      sourcemap: true,
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true,
-    },
-  ],
   plugins: [
     pugAsJsx({
       resolve: {
@@ -73,3 +62,51 @@ export default {
   ],
   external,
 };
+
+const cjsConfig = {
+  ...rollupConfig,
+  output: {
+    file: pkg.main,
+    format: 'cjs',
+    sourcemap: true,
+  },
+};
+
+const esConfig = {
+  ...rollupConfig,
+  output: {
+    file: pkg.module,
+    format: 'es',
+    sourcemap: true,
+  },
+};
+
+const amdConfig = {
+  ...rollupConfig,
+  output: {
+    file: pkg.browser,
+    format: 'amd',
+    sourcemap: true,
+    strict: false,
+  },
+  external: false,
+};
+
+const amdMinConfig = {
+  ...rollupConfig,
+  output: {
+    file: pkg.browser.replace(/\.js$/, '.min.js'),
+    format: 'amd',
+    sourcemap: true,
+    strict: false,
+  },
+  plugins: [...rollupConfig.plugins, uglify()],
+  external: false,
+};
+
+export default [
+  cjsConfig,
+  esConfig,
+  amdConfig,
+  amdMinConfig,
+];
