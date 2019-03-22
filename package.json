@@ -7,12 +7,12 @@
   "jsnext:main": "dist/my-app.es.js",
   "private": true,
   "dependencies": {
-    "@types/jest": "^24.0.6",
-    "@types/node": "^11.9.5",
-    "@types/react": "^16.8.4",
-    "@types/react-dom": "^16.8.2",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "@types/jest": "^24.0.11",
+    "@types/node": "^11.11.5",
+    "@types/react": "^16.8.8",
+    "@types/react-dom": "^16.8.3",
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5"
   },
   "devDependencies": {
     "babel-plugin-transform-commonjs-es2015-modules": "^4.0.1",
@@ -22,7 +22,7 @@
     "postcss-flexbugs-fixes": "^4.1.0",
     "postcss-preset-env": "^6.5.0",
     "pug-as-jsx-loader": "^1.0.66",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^2.1.8",
     "rollup": "^1.2.3",
     "rollup-plugin-babel": "^4.3.2",
     "rollup-plugin-commonjs": "^9.2.1",
@@ -32,7 +32,7 @@
     "rollup-plugin-typescript2": "^0.19.2",
     "rollup-plugin-uglify": "^6.0.2",
     "tailwindcss": "^0.7.4",
-    "typescript": "^3.3.3333",
+    "typescript": "^3.3.4000",
     "yaml-loader": "^0.5.0"
   },
   "scripts": {
