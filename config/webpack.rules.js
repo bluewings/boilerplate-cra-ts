@@ -56,7 +56,7 @@ module.exports = (paths, overrides = {}) => {
     // Process pug as jsx.
     {
       test: /\.pug$/,
-      include: paths.appSrc,
+      include: /(\/src\/|\/documentation\/)/,
       use: [loaders.babel, loaders.pugAsJsx],
     },
 
