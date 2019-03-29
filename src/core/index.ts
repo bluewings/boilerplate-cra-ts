@@ -1,3 +1,3 @@
-export function greeting(name: string): string {
-  return `Hello ${name}!`;
-}
+import Greeting from './Greeting';
+
+export { Greeting };
