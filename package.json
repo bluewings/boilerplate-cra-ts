@@ -21,6 +21,8 @@
   "devDependencies": {
     "babel-plugin-transform-commonjs-es2015-modules": "^4.0.1",
     "cra-rewired": "^1.0.22",
+    "docz": "^1.0.0-rc.3",
+    "docz-theme-default": "^1.0.0-rc.3",
     "json-loader": "^0.5.7",
     "node-sass": "^4.11.0",
     "postcss-flexbugs-fixes": "^4.1.0",
@@ -45,7 +47,9 @@
     "prebuild": "rm -rf dist/*",
     "prepare": "npm run build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "docz": "docz dev",
+    "docz:build": "docz build"
   },
   "eslintConfig": {
     "extends": "react-app"
