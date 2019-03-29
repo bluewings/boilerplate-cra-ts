@@ -5,7 +5,11 @@
   "module": "dist/my-app.es.js",
   "browser": "dist/my-app.amd.js",
   "jsnext:main": "dist/my-app.es.js",
-  "private": true,
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluewings/boilerplate-cra-ts"
+  },
   "dependencies": {
     "@types/jest": "^24.0.11",
     "@types/node": "^11.12.0",
@@ -39,6 +43,7 @@
     "start": "cra-rewired -s react-scripts -m start -c config/webpack.custom.dev.js",
     "build": "rollup -c",
     "prebuild": "rm -rf dist/*",
+    "prepare": "npm run build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
