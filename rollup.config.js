@@ -28,15 +28,6 @@ const rollupConfig = {
       clean: true,
       objectHashIgnoreUnknownHack: true,
       useTsconfigDeclarationDir: true,
-      tsconfigOverride: {
-        compilerOptions: {
-          declaration: true,
-          declarationDir: 'dist',
-          allowJs: false,
-          isolatedModules: false,
-        },
-        include: [entry],
-      },
     }),
     babel({
       runtimeHelpers: true,
@@ -81,6 +72,15 @@ const esConfig = {
   },
 };
 
+const amdPlugins = rollupConfig.plugins.map((plugin) =>
+  plugin.name !== 'babel'
+    ? plugin
+    : babel({
+        presets: ['@babel/preset-env'],
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.pug'],
+      }),
+);
+
 const amdConfig = {
   ...rollupConfig,
   output: {
@@ -89,6 +89,7 @@ const amdConfig = {
     sourcemap: true,
     strict: false,
   },
+  plugins: amdPlugins,
   external: false,
 };
 
@@ -100,7 +101,7 @@ const amdMinConfig = {
     sourcemap: true,
     strict: false,
   },
-  plugins: [...rollupConfig.plugins, uglify()],
+  plugins: [...amdPlugins, uglify()],
   external: false,
 };
 
