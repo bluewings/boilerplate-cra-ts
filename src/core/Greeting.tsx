@@ -1,8 +1,11 @@
-import * as React from 'react';
 import { FunctionComponent } from 'react';
+import template from './Greeting.pug';
 
 const Greeting: FunctionComponent<{ name?: string }> = ({ name = 'Someone' }) => {
-  return <h2>{`Hello ${name}!`}</h2>;
+  return template({
+    // variables
+    name,
+  });
 };
 
 export default Greeting;
